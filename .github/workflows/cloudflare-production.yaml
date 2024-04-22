@@ -8,8 +8,6 @@ on:
     branches:
       - master
 
-      name: Deploy to production
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
