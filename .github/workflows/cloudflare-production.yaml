@@ -1,0 +1,25 @@
+name: Cloudflare Production Deployment
+env:
+  CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+  CF_GLOBAL_APIKEY: ${{ secrets.CF_GLOBAL_APIKEY }}
+  CF_EMAIL: ${{ secrets.CF_EMAIL }}
+on:
+  push:
+    branches:
+      - master
+
+      name: Deploy to production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tomjschuster/cloudflare-pages-deploy-action@v0
+        with:
+          account-id: '${{ secrets.CF_ACCOUNT_ID }}'
+          api-key: '${{ secrets.CF_GLOBAL_APIKEY }}'
+          email: '${{ secrets.CF_EMAIL }}'
+          project-name: '${{ env.PAGES_PROJECT_NAME }}'
+          production: true
+        env:
+          PAGES_PROJECT_NAME: astro-spacex
