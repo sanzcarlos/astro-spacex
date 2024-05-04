@@ -11,7 +11,7 @@ export async function getLaunches() {
 			options: {
 				limit: 12,
 				sort: {
-					data_unix: 'asc',
+					date_unix: 'asc',
 				},
 			},
 		}),
