@@ -1,11 +1,11 @@
-name: Cloudflare Production Deployment
+name: Cloudflare Preview  Deployment
 env:
   CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
   CF_GLOBAL_APIKEY: ${{ secrets.CF_GLOBAL_APIKEY }}
   CF_EMAIL: ${{ secrets.CF_EMAIL }}
 on:
   push:
-    branches:
+    branches-ignore:
       - master
 
 jobs:
