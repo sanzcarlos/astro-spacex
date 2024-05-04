@@ -1,0 +1,58 @@
+---
+import CardWrapper from './card-wrapper.astro'
+type Props = {
+	details: string | null
+	flightNumber: number
+	id: string
+	img: string
+	name: string
+	success: boolean
+}
+
+const { details, flightNumber, id, img, success } = Astro.props
+const successText = success ? 'Success' : 'Failure'
+const formatedDetails = details ? (details.endsWith('.') ? details : `${details}.`) : null
+---
+
+<CardWrapper
+	href={`/launch/${id}`}
+	hasDetails={formatedDetails !== null}
+>
+	<picture>
+		<img
+			class='m-auto'
+			width={256}
+			height={256}
+			title={`Patch of launch number ${flightNumber}`}
+			src={img}
+			alt={`Patch for launch ${id}`}
+		/>
+	</picture>
+	<header class='flex-grow h-fit flex flex-col gap-2'>
+		<span
+			class:list={[
+				'text-xs font-semibold px-2.5 py-0.5 rounded w-fit',
+				{
+					'bg-green-400 text-black': success,
+					'bg-red-400 text-black': !success,
+				},
+			]}
+		>
+			{successText}
+		</span>
+		<h2 class='text-2xl font-bold tracking-tight text-white'>
+			Launch #{flightNumber}
+		</h2>
+
+		<p
+			class:list={[
+				'font-light text-gray-300',
+				{
+					'line-clamp-3': formatedDetails,
+				},
+			]}
+		>
+			{formatedDetails ?? 'No details available.'}
+		</p>
+	</header>
+</CardWrapper>

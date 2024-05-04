@@ -1,11 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import Launches from '../components/launches.astro'
+import Layout from '../layouts/layout.astro'
 ---
 
-<Layout title="SpaceX Launches">
-	<main>
-		<Header />
-	</main>
+<Layout title='Latest Launches'>
+	<Launches />
 </Layout>
